@@ -56,14 +56,14 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public String homeAdd(@RequestParam String name,
+    public String homeAdd(@RequestParam String text,
                           @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
         try {
             String date = new String(published_at).replace("T", " ");
             DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             if (date.length() != 0) {
                 java.util.Date time = date2.parse(date);
-                ProductType productType = new ProductType(name, priority, time);
+                ProductType productType = new ProductType(text, priority, time);
                 productTypeRepository.save(productType);
             }
         } catch (ParseException e) {

@@ -10,8 +10,9 @@
 
 <div class="container mt-5 md-5">
     <div th:each="el : ${productTypeArrayList}" class="alert alert-info mt-5">
-        <h3 th:text="${el.name}"/>
+        <h3 th:text="${el.text}"/>
         <p th:text="${el.published_at}"/>
+        <p th:text="${el.priority}"/>
         <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
         <form th:action="'/' + ${el.id} + '/return'" method="post">
             <button class="btn btn-warning" type="submit">Delete</button>

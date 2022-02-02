@@ -35,10 +35,10 @@ public class ControllerArticle {
     }
 
     @PostMapping("blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String name,
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String text,
                           @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
         ProductType productType = productTypeRepository.findById(id).orElseThrow();
-        productType.setName(name);
+        productType.setText(text);
         productType.setPriority(priority);
         try {
             String date = new String(published_at).replace("T", " ");

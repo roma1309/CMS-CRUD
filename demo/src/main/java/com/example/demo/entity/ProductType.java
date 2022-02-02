@@ -15,18 +15,37 @@ public class ProductType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String name;
+    private String text;
     int priority;
     Date published_at;
 
-    public int getPriority() {
-        return priority;
+    public ProductType() {
     }
 
-    public ProductType(String name, int priority, Date published_at) {
-        this.name = name;
+    public ProductType(String text, int priority, Date published_at) {
+        this.text = text;
         this.priority = priority;
         this.published_at = published_at;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 
     public void setPriority(int priority) {
@@ -40,24 +59,4 @@ public class ProductType {
     public void setPublished_at(Date published_at) {
         this.published_at = published_at;
     }
-
-    public ProductType() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

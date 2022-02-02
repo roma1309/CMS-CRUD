@@ -12,7 +12,7 @@
     <h3>Добавление ссылки</h3><br>
     <form method="post">
         <div th:each="el : ${productTypeArrayList}">
-            <textarea name="name" th:text="${el.name}" placeholder="Enter text" class="form-control"/><br>
+            <textarea name="text" th:text="${el.text}" placeholder="Enter text" class="form-control"/><br>
             <input type="text" name="priority" th:value="${el.priority}" placeholder="Enter priority"
                    class="form-control"><br>
             <input type="datetime-local" name="published_at" th:value="${el.published_at}" class="form-control"><br>
