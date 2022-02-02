@@ -10,7 +10,7 @@
 
 <div class="container mt-5 md-5">
     <div th:each="el : ${productTypeArrayList}" class="alert alert-info mt-5">
-        <h3 th:text="${el.text}"/>
+        <h3 th:text="${el.text}"/><br>
         <p th:text="${el.published_at}"/>
         <p th:text="${el.priority}"/>
         <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>

@@ -36,7 +36,7 @@ public class ControllerArticle {
 
     @PostMapping("blog/{id}/edit")
     public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String text,
-                          @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
+                                 @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
         ProductType productType = productTypeRepository.findById(id).orElseThrow();
         productType.setText(text);
         productType.setPriority(priority);
@@ -46,6 +46,9 @@ public class ControllerArticle {
             if (date.length() != 0) {
                 java.util.Date time = date2.parse(date);
                 productType.setPublished_at(time);
+                productTypeRepository.save(productType);
+            } else {
+                productType.setPublished_at(productType.getPublished_at());
                 productTypeRepository.save(productType);
             }
         } catch (ParseException e) {

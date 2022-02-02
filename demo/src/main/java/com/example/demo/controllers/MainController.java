@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +31,8 @@ public class MainController {
 
         Iterable<ProductType> product = productTypeRepository.findAll();
         ArrayList<ProductType> arrayList = new ArrayList<>();
+
+
         product.forEach(arrayList::add);
         arrayList.sort(new Comparator<ProductType>() {
             @Override
@@ -45,6 +46,7 @@ public class MainController {
                 }
             }
         });
+
         ArrayList<ProductType> types = new ArrayList<>();
         for (ProductType productType : arrayList) {
             if (!productType.getPublished_at().after(date)) {
@@ -81,7 +83,7 @@ public class MainController {
         ArrayList<ProductType> productTypeArrayList = new ArrayList<>();
         optionalProductType.ifPresent(productTypeArrayList::add);
         model.addAttribute("productTypeArrayList", productTypeArrayList);
-        return "home-add";
+        return "content";
     }
 
     @PostMapping("/unpublished")
