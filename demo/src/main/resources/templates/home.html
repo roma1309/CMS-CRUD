@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Content Management System</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" name="description"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<form action="/unpublished" method="post">
+    <button type="submit" class="btn btn-success">Неопубликованные статьи</button>
+</form>
+<h1 class="container mt-5">Добро пожаловать</h1>
+<div class="container mt-5">
+    <div th:each="el : ${product}" class="alert alert-info mt-5">
+        <p th:text="'Приоритет - ' + ${el.priority}"/>
+        <p th:text="'Дата - ' + ${el.published_at}"/>
+        <a th:href="'/' + ${el.id}">Перейти</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div th:each="el : ${unpublished}" class="alert alert-info mt-5">
+        <p th:text="'Приоритет - ' + ${el.priority}"/>
+        <p th:text="'Дата - ' + ${el.published_at}"/>
+        <a th:href="'/' + ${el.id}">Перейти</a>
+    </div>
+</div>
+
+<div class="container mt-5 md-5">
+    <h3>Добавление ссылки</h3><br>
+    <form action="/" method="post">
+        <textarea name="name" placeholder="Enter text" class="form-control"></textarea><br>
+        <input type="text" name="priority" placeholder="Enter priority" class="form-control"></p><br>
+        <input type="datetime-local" name="published_at" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+</div>
+
+</div>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>
