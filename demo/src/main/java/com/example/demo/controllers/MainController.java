@@ -24,7 +24,7 @@ public class MainController {
     @Autowired
     private ProductTypeRepository productTypeRepository;
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String home(Model model) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.valueOf(localDate);
@@ -57,7 +57,7 @@ public class MainController {
         return "home";
     }
 
-    @PostMapping("/")
+    @PostMapping("/main")
     public String homeAdd(@RequestParam String text,
                           @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
         try {
@@ -71,13 +71,13 @@ public class MainController {
         } catch (ParseException e) {
             return e.getMessage();
         }
-        return "redirect:/";
+        return "redirect:/main";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/blog/{id}")
     public String newBlog(@PathVariable(value = "id") long id, Model model) {
         if (!productTypeRepository.existsById(id)) {
-            return "redirect:/";
+            return "redirect:/main";
         }
         Optional<ProductType> optionalProductType = productTypeRepository.findById(id);
         ArrayList<ProductType> productTypeArrayList = new ArrayList<>();

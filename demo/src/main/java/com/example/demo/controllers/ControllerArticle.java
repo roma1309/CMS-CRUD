@@ -25,7 +25,7 @@ public class ControllerArticle {
     @GetMapping("blog/{id}/edit")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!productTypeRepository.existsById(id)) {
-            return "redirect:/";
+            return "redirect:/main";
         }
         Optional<ProductType> optionalProductType = productTypeRepository.findById(id);
         ArrayList<ProductType> productTypeArrayList = new ArrayList<>();
@@ -54,13 +54,13 @@ public class ControllerArticle {
         } catch (ParseException e) {
             return e.getMessage();
         }
-        return "redirect:/{id}";
+        return "redirect:/blog/{id}";
     }
 
     @PostMapping("/{id}/return")
     public String blogDelete(@PathVariable(value = "id") long id, Model model) {
         ProductType productType = productTypeRepository.findById(id).orElseThrow();
         productTypeRepository.delete(productType);
-        return "redirect:/";
+        return "redirect:/main";
     }
 }

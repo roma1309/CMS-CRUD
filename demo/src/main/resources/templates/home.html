@@ -16,7 +16,7 @@
     <div th:each="el : ${product}" class="alert alert-info mt-5">
         <p th:text="'Приоритет - ' + ${el.priority}"/>
         <p th:text="'Дата - ' + ${el.published_at}"/>
-        <a th:href="'/' + ${el.id}">Перейти</a>
+        <a th:href="'/blog/' + ${el.id}">Перейти</a>
     </div>
 </div>
 
@@ -24,13 +24,13 @@
     <div th:each="el : ${unpublished}" class="alert alert-info mt-5">
         <p th:text="'Приоритет - ' + ${el.priority}"/>
         <p th:text="'Дата - ' + ${el.published_at}"/>
-        <a th:href="'/' + ${el.id}">Перейти</a>
+        <a th:href="'/blog/' + ${el.id}">Перейти</a>
     </div>
 </div>
 
 <div class="container mt-5 md-5">
     <h3>Добавление ссылки</h3><br>
-    <form action="/" method="post">
+    <form action="/main" method="post">
         <textarea name="text" placeholder="Enter text" class="form-control"></textarea><br>
         <input type="text" name="priority" placeholder="Enter priority" class="form-control"></p><br>
         <input type="datetime-local" name="published_at" class="form-control"><br>
