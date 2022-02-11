@@ -8,17 +8,19 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
 
-<div class="container mt-5 md-5">
+<<div class="container mt-5 md-5">
     <div th:each="el : ${productTypeArrayList}" class="alert alert-info mt-5">
-        <h3 th:text="${el.text}"/><br>
-        <p th:text="${el.published_at}"/>
-        <p th:text="${el.priority}"/>
-        <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
-        <form th:action="'/' + ${el.id} + '/return'" method="post">
+        <h1 th:text="${el.heading}"></h1><br>
+        <samp th:text="${el.text}"></samp><br><br>
+        <p th:text="${el.published_at}"></p>
+        <var th:text="${el.priority}"></var><br><br>
+        <a th:href="'/blog/' + ${el.id} + '/edit-my-article'" class="btn btn-warning">Редактировать</a><br><br>
+        <form th:action="'/' + ${el.id} + '/return-article'" method="post">
             <button class="btn btn-warning" type="submit">Delete</button>
         </form>
     </div>
 </div>
+
 <div th:insert="blocks/footer :: footer"></div>
 </body>
 </html>

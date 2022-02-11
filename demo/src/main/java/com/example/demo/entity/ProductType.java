@@ -18,14 +18,16 @@ public class ProductType {
     private String text;
     int priority;
     Date published_at;
-
+    private String heading;
+    
     public ProductType() {
     }
 
-    public ProductType(String text, int priority, Date published_at) {
+    public ProductType(String text, int priority, Date published_at, String heading) {
         this.text = text;
         this.priority = priority;
         this.published_at = published_at;
+        this.heading = heading;
     }
 
     public Long getId() {
@@ -58,5 +60,13 @@ public class ProductType {
 
     public void setPublished_at(Date published_at) {
         this.published_at = published_at;
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
 }

@@ -22,7 +22,7 @@ public class ControllerArticle {
     @Autowired
     private ProductTypeRepository productTypeRepository;
 
-    @GetMapping("blog/{id}/edit")
+    @GetMapping("blog/{id}/edit-my-article")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!productTypeRepository.existsById(id)) {
             return "redirect:/main";
@@ -34,12 +34,13 @@ public class ControllerArticle {
         return "blog-edit";
     }
 
-    @PostMapping("blog/{id}/edit")
-    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String text,
+    @PostMapping("blog/{id}/edit-my-article")
+    public String blogPostUpdate(@PathVariable(value = "id") long id, @RequestParam String text, @RequestParam String heading,
                                  @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
         ProductType productType = productTypeRepository.findById(id).orElseThrow();
         productType.setText(text);
         productType.setPriority(priority);
+        productType.setHeading(heading);
         try {
             String date = new String(published_at).replace("T", " ");
             DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -54,13 +55,13 @@ public class ControllerArticle {
         } catch (ParseException e) {
             return e.getMessage();
         }
-        return "redirect:/blog/{id}";
+        return "redirect:/blog/{id}/my-cool-article";
     }
 
-    @PostMapping("/{id}/return")
+    @PostMapping("/{id}/return-article")
     public String blogDelete(@PathVariable(value = "id") long id, Model model) {
         ProductType productType = productTypeRepository.findById(id).orElseThrow();
         productTypeRepository.delete(productType);
-        return "redirect:/main";
+        return "redirect:/main-article";
     }
 }

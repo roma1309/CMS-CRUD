@@ -9,9 +9,11 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5 md-5">
-    <h3>Добавление ссылки</h3><br>
+    <h1>Редактирование ссылки</h1><br>
     <form method="post">
         <div th:each="el : ${productTypeArrayList}">
+            <input type="text" name="heading" th:value="${el.heading}" placeholder="Enter heading"
+                   class="form-control"><br>
             <textarea name="text" th:text="${el.text}" placeholder="Enter text" class="form-control"/><br>
             <input type="text" name="priority" th:value="${el.priority}" placeholder="Enter priority"
                    class="form-control"><br>

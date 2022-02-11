@@ -24,7 +24,7 @@ public class MainController {
     @Autowired
     private ProductTypeRepository productTypeRepository;
 
-    @GetMapping("/main")
+    @GetMapping("/main-article")
     public String home(Model model) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.valueOf(localDate);
@@ -57,27 +57,27 @@ public class MainController {
         return "home";
     }
 
-    @PostMapping("/main")
-    public String homeAdd(@RequestParam String text,
+    @PostMapping("/main-article")
+    public String homeAdd(@RequestParam String text, @RequestParam String heading,
                           @RequestParam String published_at, @RequestParam int priority, Model model) throws ParseException {
         try {
             String date = new String(published_at).replace("T", " ");
             DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             if (date.length() != 0) {
                 java.util.Date time = date2.parse(date);
-                ProductType productType = new ProductType(text, priority, time);
+                ProductType productType = new ProductType(text, priority, time, heading);
                 productTypeRepository.save(productType);
             }
         } catch (ParseException e) {
             return e.getMessage();
         }
-        return "redirect:/main";
+        return "redirect:/main-article";
     }
 
-    @GetMapping("/blog/{id}")
+    @GetMapping("/blog/{id}/my-cool-article")
     public String newBlog(@PathVariable(value = "id") long id, Model model) {
         if (!productTypeRepository.existsById(id)) {
-            return "redirect:/main";
+            return "redirect:/main-article";
         }
         Optional<ProductType> optionalProductType = productTypeRepository.findById(id);
         ArrayList<ProductType> productTypeArrayList = new ArrayList<>();
@@ -86,7 +86,7 @@ public class MainController {
         return "content";
     }
 
-    @PostMapping("/unpublished")
+    @PostMapping("/unpublished-article")
     public String homeUnpublished(Model model) {
         LocalDate localDate = LocalDate.now();
         Date date = Date.valueOf(localDate);
