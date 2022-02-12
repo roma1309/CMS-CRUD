@@ -25,7 +25,7 @@ public class ControllerArticle {
     @GetMapping("blog/{id}/edit-my-article")
     public String blogEdit(@PathVariable(value = "id") long id, Model model) {
         if (!productTypeRepository.existsById(id)) {
-            return "redirect:/main";
+            return "redirect:/menu_label";
         }
         Optional<ProductType> optionalProductType = productTypeRepository.findById(id);
         ArrayList<ProductType> productTypeArrayList = new ArrayList<>();
@@ -62,6 +62,6 @@ public class ControllerArticle {
     public String blogDelete(@PathVariable(value = "id") long id, Model model) {
         ProductType productType = productTypeRepository.findById(id).orElseThrow();
         productTypeRepository.delete(productType);
-        return "redirect:/main-article";
+        return "redirect:/menu_label";
     }
 }
